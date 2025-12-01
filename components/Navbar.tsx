@@ -67,10 +67,13 @@ const Navbar: React.FC<NavbarProps> = ({ isDarkMode, toggleTheme }) => {
               {isDarkMode ? <Sun size={18} /> : <Moon size={18} />}
             </button>
 
-            <button className="flex items-center gap-2 bg-slate-900 dark:bg-white text-white dark:text-slate-900 px-6 py-2.5 rounded-full text-sm font-bold hover:bg-violet-600 dark:hover:bg-violet-200 transition-colors shadow-lg shadow-slate-900/20 dark:shadow-white/10">
+            <a 
+              href="https://sembagi.slemankab.go.id/login.html"
+              className="flex items-center gap-2 bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white px-6 py-2.5 rounded-full text-sm font-bold hover:shadow-lg hover:shadow-violet-500/30 active:scale-95 transition-all"
+            >
               <LogIn size={16} />
               Login
-            </button>
+            </a>
           </div>
 
           {/* Mobile Toggle */}
@@ -79,7 +82,7 @@ const Navbar: React.FC<NavbarProps> = ({ isDarkMode, toggleTheme }) => {
                 onClick={toggleTheme}
                 className="p-3 text-slate-900 dark:text-white bg-white dark:bg-slate-800 rounded-xl shadow-md border border-slate-100 dark:border-slate-700"
               >
-                {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
+                {isDarkMode ? <Sun size={24} /> : <Moon size={24} />}
             </button>
             <button 
               className="p-3 text-slate-900 dark:text-white bg-white dark:bg-slate-800 rounded-xl shadow-md border border-slate-100 dark:border-slate-700"
@@ -114,9 +117,12 @@ const Navbar: React.FC<NavbarProps> = ({ isDarkMode, toggleTheme }) => {
           ))}
         </div>
         
-        <button className="w-full bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white py-5 rounded-2xl font-bold text-lg shadow-xl shadow-violet-500/30 flex items-center justify-center gap-3 mt-auto mb-10 active:scale-95 transition-transform">
-          <LogIn size={24} /> Masuk Sistem
-        </button>
+        <a 
+          href="https://sembagi.slemankab.go.id/login.html"
+          className="w-full bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white py-5 rounded-2xl font-bold text-lg shadow-xl shadow-violet-500/30 flex items-center justify-center gap-3 mt-auto mb-10 active:scale-95 transition-transform"
+        >
+          <LogIn size={24} /> Login
+        </a>
       </div>
     </>
   );

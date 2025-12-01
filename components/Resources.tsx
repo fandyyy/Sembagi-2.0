@@ -1,7 +1,6 @@
-
 import React, { useState } from 'react';
 import { RESOURCES } from '../constants';
-import { Search, FileText, Download, Sparkles, FolderOpen, ArrowUpRight } from 'lucide-react';
+import { Search, FileText, Download, Sparkles, FolderOpen, ArrowUpRight, ChevronRight, Grid } from 'lucide-react';
 
 const CATEGORIES = ["Semua", "Kurikulum", "Bank Soal", "Materi", "Lainnya"];
 
@@ -25,20 +24,18 @@ const Resources: React.FC = () => {
   });
 
   return (
-    <section className="py-24 bg-slate-50 dark:bg-slate-950 relative overflow-hidden transition-colors duration-500" id="resources">
+    <section className="py-24 bg-white dark:bg-slate-900 relative overflow-hidden transition-colors duration-500" id="resources">
       
       {/* Background Decor */}
-      <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-slate-300 dark:via-slate-700 to-transparent"></div>
-      <div className="absolute -top-40 -right-40 w-[600px] h-[600px] bg-blue-500/5 rounded-full blur-3xl pointer-events-none"></div>
-      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-violet-500/5 rounded-full blur-3xl pointer-events-none"></div>
-
+      <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-slate-200 dark:via-slate-800 to-transparent"></div>
+      
       <div className="container mx-auto px-4 relative z-10">
         
         {/* Header */}
         <div className="max-w-3xl mx-auto text-center mb-16 space-y-6">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-300 text-xs font-bold tracking-widest uppercase border border-blue-100 dark:border-blue-800">
             <Sparkles size={14} className="animate-pulse" />
-            Pusat Unduhan
+            Dokumen Sembagi
           </div>
           
           <h2 className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white tracking-tight">
@@ -49,95 +46,105 @@ const Resources: React.FC = () => {
             Akses cepat ke ribuan dokumen pendidikan, modul ajar, bank soal, dan materi pengembangan kompetensi guru.
           </p>
 
-          {/* Search & Filter */}
-          <div className="bg-white dark:bg-slate-900 p-2 rounded-2xl shadow-xl shadow-slate-200/50 dark:shadow-slate-950/50 border border-slate-200 dark:border-slate-800 flex flex-col md:flex-row gap-2 mt-8">
-            <div className="relative flex-grow">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={20} />
-              <input 
-                type="text" 
-                placeholder="Cari dokumen..." 
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full h-12 pl-12 pr-4 bg-transparent rounded-xl outline-none text-slate-700 dark:text-slate-200 placeholder-slate-400 font-medium"
-              />
-            </div>
-            <div className="hidden md:flex bg-slate-100 dark:bg-slate-800 p-1 rounded-xl gap-1">
-              {CATEGORIES.map((cat) => (
-                <button
-                  key={cat}
-                  onClick={() => setActiveCategory(cat)}
-                  className={`px-4 py-2 rounded-lg text-sm font-bold transition-all ${
-                    activeCategory === cat 
-                      ? 'bg-white dark:bg-slate-700 text-slate-900 dark:text-white shadow-sm' 
-                      : 'text-slate-500 hover:text-slate-700 dark:hover:text-slate-300'
-                  }`}
-                >
-                  {cat}
+          {/* Unified Search & Filter Container */}
+          <div className="mt-10 flex justify-center w-full sticky top-24 z-30">
+             <div className="w-full max-w-2xl bg-white dark:bg-slate-900 p-2 rounded-full shadow-2xl shadow-slate-200/50 dark:shadow-black/50 border border-slate-200 dark:border-slate-800 flex items-center transition-all duration-300 focus-within:ring-2 focus-within:ring-blue-500/50 focus-within:border-blue-500">
+                
+                {/* Search Icon */}
+                <div className="flex-shrink-0 pl-4 text-slate-400">
+                   <Search size={20} />
+                </div>
+                
+                {/* Input */}
+                <input 
+                  type="text" 
+                  placeholder="Cari dokumen..." 
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="flex-grow min-w-0 h-10 px-3 bg-transparent outline-none text-slate-700 dark:text-slate-200 placeholder-slate-400 font-medium"
+                />
+
+                {/* Divider (Desktop) */}
+                <div className="hidden md:block w-px h-6 bg-slate-200 dark:bg-slate-700 mx-2"></div>
+
+                {/* Desktop Tabs */}
+                <div className="hidden md:flex items-center gap-1 bg-slate-100 dark:bg-slate-800/50 p-1 rounded-full">
+                   {CATEGORIES.map((cat) => (
+                     <button
+                       key={cat}
+                       onClick={() => setActiveCategory(cat)}
+                       className={`px-4 py-1.5 rounded-full text-xs font-bold transition-all whitespace-nowrap ${
+                         activeCategory === cat 
+                           ? 'bg-white dark:bg-slate-700 text-blue-600 dark:text-blue-300 shadow-sm' 
+                           : 'text-slate-500 hover:text-slate-700 dark:hover:text-slate-300'
+                       }`}
+                     >
+                       {cat}
+                     </button>
+                   ))}
+                </div>
+
+                {/* Search Button (Mobile Only) */}
+                <button className="md:hidden flex-shrink-0 bg-blue-600 text-white w-10 h-10 flex items-center justify-center rounded-full ml-2">
+                   <Search size={18} />
                 </button>
-              ))}
-            </div>
-            {/* Mobile Filters */}
-            <div className="flex md:hidden overflow-x-auto pb-2 gap-2 hide-scrollbar px-1">
-               {CATEGORIES.map((cat) => (
-                <button
-                  key={cat}
-                  onClick={() => setActiveCategory(cat)}
-                  className={`flex-shrink-0 px-4 py-2 rounded-lg text-xs font-bold border transition-all ${
-                    activeCategory === cat 
-                      ? 'bg-slate-900 dark:bg-white text-white dark:text-slate-900 border-slate-900 dark:border-white' 
-                      : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-800'
-                  }`}
-                >
-                  {cat}
-                </button>
-              ))}
-            </div>
+
+             </div>
           </div>
+          
+          {/* Mobile Tabs (Below Search) */}
+          <div className="flex md:hidden justify-center overflow-x-auto pb-2 gap-2 hide-scrollbar px-1 w-full mt-4">
+              {CATEGORIES.map((cat) => (
+               <button
+                 key={cat}
+                 onClick={() => setActiveCategory(cat)}
+                 className={`flex-shrink-0 px-4 py-2 rounded-full text-xs font-bold border transition-all ${
+                   activeCategory === cat 
+                     ? 'bg-slate-900 dark:bg-white text-white dark:text-slate-900 border-slate-900 dark:border-white' 
+                     : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-800'
+                 }`}
+               >
+                 {cat}
+               </button>
+             ))}
+           </div>
+
         </div>
 
-        {/* Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        {/* Grid - Feature Box Design */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {filteredResources.map((item, idx) => {
             const Icon = item.icon;
             return (
               <a 
                 key={idx} 
                 href={item.link}
-                className="group relative flex flex-col h-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 hover:shadow-2xl hover:shadow-slate-200/50 dark:hover:shadow-slate-900/50 transition-all duration-300 hover:-translate-y-1 overflow-hidden"
+                className="group relative flex flex-col p-6 rounded-[2rem] bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 hover:border-transparent transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 overflow-hidden"
               >
-                {/* Hover Gradient Overlay */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${item.color} opacity-0 group-hover:opacity-[0.03] transition-opacity duration-300 pointer-events-none`}></div>
-
-                {/* Top Section: Icon & Action */}
-                <div className="flex justify-between items-start mb-6 relative z-10">
-                  <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${item.color} flex items-center justify-center shadow-lg transform group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300`}>
-                    <Icon size={28} className="text-white drop-shadow-md" />
-                  </div>
-                  <div className="w-8 h-8 rounded-full bg-slate-50 dark:bg-slate-800 flex items-center justify-center text-slate-400 group-hover:bg-slate-100 dark:group-hover:bg-slate-700 group-hover:text-slate-900 dark:group-hover:text-white transition-colors">
-                    <ArrowUpRight size={18} />
-                  </div>
+                {/* Hover Gradient Background */}
+                <div className={`absolute inset-0 bg-gradient-to-br ${item.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500`}></div>
+                
+                {/* Icon Container */}
+                <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${item.color} flex items-center justify-center text-white shadow-lg mb-6 group-hover:scale-110 transition-transform duration-500`}>
+                  <Icon size={32} className="drop-shadow-md" />
                 </div>
 
                 {/* Content */}
-                <div className="flex-grow relative z-10">
-                  {/* Tag removed here */}
-                  <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2 leading-tight group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                <div className="relative z-10 flex-grow">
+                  <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2 leading-tight group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                     {item.title}
                   </h3>
-                  <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed line-clamp-2">
+                  <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-6">
                     {item.description}
                   </p>
                 </div>
 
-                {/* Footer */}
-                <div className="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between relative z-10">
-                  <div className="flex items-center gap-1.5 text-xs font-semibold text-slate-400 group-hover:text-slate-600 dark:group-hover:text-slate-300 transition-colors">
-                    <FileText size={14} />
-                    <span>Akses File</span>
-                  </div>
-                  <span className="text-xs font-bold text-blue-600 dark:text-blue-400 opacity-0 group-hover:opacity-100 transition-opacity transform translate-x-2 group-hover:translate-x-0 duration-300">
-                    Unduh Sekarang
-                  </span>
+                {/* Footer Action */}
+                <div className="relative z-10 flex items-center justify-between mt-auto pt-4 border-t border-slate-200 dark:border-slate-700 group-hover:border-slate-200 dark:group-hover:border-slate-700 transition-colors">
+                   <span className="text-xs font-bold text-slate-400 group-hover:text-blue-500 transition-colors">Explore</span>
+                   <div className="w-8 h-8 rounded-full bg-white dark:bg-slate-900 flex items-center justify-center text-slate-400 group-hover:bg-blue-500 group-hover:text-white transition-all duration-300">
+                      <ArrowUpRight size={16} />
+                   </div>
                 </div>
               </a>
             );

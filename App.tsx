@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Officials from './components/Officials';
-import Captains from './components/Captains';
+import { CoreTeam, SupportTeam, RegionalSupport, Leaderboard } from './components/Captains';
 import Resources from './components/Resources';
 import Footer from './components/Footer';
 
@@ -40,8 +40,11 @@ const App: React.FC = () => {
       <main className="flex-grow">
         <Hero />
         <Officials />
-        <Captains />
+        <RegionalSupport />
         <Resources />
+        <CoreTeam />
+        <SupportTeam />
+        <Leaderboard />
       </main>
       <Footer />
     </div>

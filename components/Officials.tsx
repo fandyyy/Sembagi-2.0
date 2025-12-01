@@ -14,7 +14,7 @@ const Officials: React.FC = () => {
             Struktural Dinas
           </span>
           <h2 className="text-4xl md:text-6xl font-extrabold text-slate-900 dark:text-white mb-6 tracking-tight">
-            Pimpinan <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-orange-600">Disdik Sleman</span>
+            Pimpinan <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-orange-600">Dinas Pendidikan Kabupaten Sleman</span>
           </h2>
           <p className="text-lg text-slate-500 dark:text-slate-400 max-w-2xl mx-auto">
             Nakhoda pendidikan yang berdedikasi membawa Sleman menuju era pendidikan yang lebih maju, inklusif, dan berdaya saing.
@@ -35,7 +35,7 @@ const Officials: React.FC = () => {
                 <img 
                   src={official.image} 
                   alt={official.name}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
+                  className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-110" 
                 />
                 
                 {/* Gradient Overlay - Always visible but darker on hover */}
