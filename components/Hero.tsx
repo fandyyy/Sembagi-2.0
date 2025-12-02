@@ -9,13 +9,13 @@ const Hero: React.FC = () => {
       
       {/* Video Modal Overlay */}
       {isVideoOpen && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-md p-4 animate-in fade-in duration-300">
-           <div className="relative w-full max-w-5xl aspect-video bg-black rounded-3xl overflow-hidden shadow-2xl">
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 backdrop-blur-md p-4 animate-in fade-in duration-300">
+           <div className="relative w-full max-w-6xl aspect-video bg-black rounded-3xl overflow-hidden shadow-2xl border border-white/10">
               <button 
                 onClick={() => setIsVideoOpen(false)}
-                className="absolute top-4 right-4 z-10 w-10 h-10 bg-black/50 hover:bg-black/70 rounded-full flex items-center justify-center text-white transition-colors border border-white/20"
+                className="absolute top-6 right-6 z-20 w-12 h-12 bg-black/50 hover:bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white transition-all border border-white/10 hover:scale-110"
               >
-                <X size={20} />
+                <X size={24} />
               </button>
               <video 
                 src="https://sembagi.slemankab.go.id/folder_image/Manual%20Book%20Sembagi.mp4" 
@@ -27,7 +27,7 @@ const Hero: React.FC = () => {
               </video>
            </div>
            {/* Close on background click */}
-           <div className="absolute inset-0 -z-10" onClick={() => setIsVideoOpen(false)}></div>
+           <div className="absolute inset-0 -z-10 cursor-pointer" onClick={() => setIsVideoOpen(false)}></div>
         </div>
       )}
 
@@ -88,23 +88,43 @@ const Hero: React.FC = () => {
             </div>
 
             {/* Right Content / Visuals - Redesigned */}
-            <div className="relative h-[500px] lg:h-[650px] w-full flex items-center justify-center animate-in zoom-in fade-in duration-1000 delay-300">
+            <div className="relative h-[550px] lg:h-[750px] w-full flex items-center justify-center animate-in zoom-in fade-in duration-1000 delay-300">
               
-               {/* Decorative Background Blob */}
-               <div className="absolute w-[450px] h-[450px] bg-violet-500/10 rounded-full blur-3xl animate-pulse"></div>
+               {/* Decorative Background Blob - Larger */}
+               <div className="absolute w-[500px] h-[500px] bg-violet-500/10 rounded-full blur-3xl animate-pulse"></div>
 
-               {/* Main Image Container */}
-               <div className="relative z-10 w-72 h-96 lg:w-96 lg:h-[480px] rounded-[3rem] overflow-hidden shadow-2xl shadow-violet-500/20 border-[8px] border-white dark:border-slate-800 transform -rotate-3 hover:rotate-0 transition-all duration-700 ease-out">
-                  <img 
-                    src="images/Ilustrasi.jpg?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
-                    alt="Education" 
-                    className="w-full h-full object-cover object-top scale-110 hover:scale-100 transition-transform duration-1000"
+               {/* Main Video Container - Increased Size by ~15% */}
+               {/* Old: w-72 h-96 lg:w-96 lg:h-[480px] */}
+               {/* New: w-[330px] h-[440px] lg:w-[440px] lg:h-[550px] */}
+               <div 
+                  onClick={() => setIsVideoOpen(true)}
+                  className="relative z-10 w-[330px] h-[440px] lg:w-[440px] lg:h-[550px] rounded-[3rem] overflow-hidden shadow-2xl shadow-violet-500/20 border-[8px] border-white dark:border-slate-800 transform -rotate-3 hover:rotate-0 transition-all duration-700 ease-out cursor-pointer group"
+               >
+                  <video 
+                    src="https://sembagi.slemankab.go.id/folder_image/Manual%20Book%20Sembagi.mp4" 
+                    className="w-full h-full object-cover object-top scale-110 group-hover:scale-100 transition-transform duration-1000"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent"></div>
+                  
+                  {/* Dark Gradient Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent pointer-events-none"></div>
+
+                  {/* Play Button Overlay */}
+                  <div className="absolute inset-0 flex items-center justify-center z-20 group-hover:scale-110 transition-transform duration-300">
+                      <div className="relative">
+                         <div className="absolute inset-0 bg-white/30 rounded-full animate-ping"></div>
+                         <div className="w-20 h-20 bg-white/20 backdrop-blur-md border border-white/50 rounded-full flex items-center justify-center shadow-2xl group-hover:bg-white/30 transition-colors">
+                            <Play size={32} className="text-white fill-white ml-1" />
+                         </div>
+                      </div>
+                  </div>
                </div>
 
-               {/* Floating Badge 1: Schools - Frosted Glass */}
-               <div className="absolute top-12 left-0 lg:-left-6 bg-white/70 dark:bg-slate-900/70 backdrop-blur-xl p-4 pr-6 rounded-2xl shadow-[0_15px_30px_rgb(0,0,0,0.1)] border border-white/50 dark:border-slate-700/50 flex items-center gap-4 animate-float hover:scale-105 transition-transform cursor-default z-20">
+               {/* Floating Badge 1: Schools - Adjusted Position (Lowered) */}
+               <div className="absolute top-24 left-0 lg:-left-12 bg-white/70 dark:bg-slate-900/70 backdrop-blur-xl p-4 pr-6 rounded-2xl shadow-[0_15px_30px_rgb(0,0,0,0.1)] border border-white/50 dark:border-slate-700/50 flex items-center gap-4 animate-float hover:scale-105 transition-transform cursor-default z-20">
                   <div className="w-12 h-12 bg-orange-100 dark:bg-orange-900/30 rounded-full flex items-center justify-center text-orange-600 dark:text-orange-400 shrink-0">
                      <Building2 size={24} />
                   </div>
@@ -114,8 +134,8 @@ const Hero: React.FC = () => {
                   </div>
                </div>
 
-               {/* Floating Badge 2: Teachers - Frosted Glass */}
-               <div className="absolute bottom-24 -right-2 lg:-right-8 bg-white/70 dark:bg-slate-900/70 backdrop-blur-xl p-4 pr-6 rounded-2xl shadow-[0_15px_30px_rgb(0,0,0,0.1)] border border-white/50 dark:border-slate-700/50 flex items-center gap-4 animate-float hover:scale-105 transition-transform cursor-default z-20" style={{ animationDelay: '2s' }}>
+               {/* Floating Badge 2: Teachers - Adjusted Position (Raised) */}
+               <div className="absolute bottom-24 -right-2 lg:-right-12 bg-white/70 dark:bg-slate-900/70 backdrop-blur-xl p-4 pr-6 rounded-2xl shadow-[0_15px_30px_rgb(0,0,0,0.1)] border border-white/50 dark:border-slate-700/50 flex items-center gap-4 animate-float hover:scale-105 transition-transform cursor-default z-20" style={{ animationDelay: '2s' }}>
                   <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center text-blue-600 dark:text-blue-400 shrink-0">
                      <Users size={24} />
                   </div>
@@ -125,13 +145,13 @@ const Hero: React.FC = () => {
                   </div>
                </div>
 
-               {/* Floating Badge 3: Files - Frosted Glass */}
-               <div className="absolute bottom-4 left-4 lg:left-2 bg-white/70 dark:bg-slate-900/70 backdrop-blur-xl p-4 pr-6 rounded-2xl shadow-[0_15px_30px_rgb(0,0,0,0.1)] border border-white/50 dark:border-slate-700/50 flex items-center gap-4 animate-float hover:scale-105 transition-transform cursor-default z-20" style={{ animationDelay: '4s' }}>
+               {/* Floating Badge 3: Files - Position */}
+               <div className="absolute bottom-11 left-4 lg:left-0 bg-white/70 dark:bg-slate-900/70 backdrop-blur-xl p-4 pr-6 rounded-2xl shadow-[0_15px_30px_rgb(0,0,0,0.1)] border border-white/50 dark:border-slate-700/50 flex items-center gap-4 animate-float hover:scale-105 transition-transform cursor-default z-20" style={{ animationDelay: '4s' }}>
                   <div className="w-12 h-12 bg-emerald-100 dark:bg-emerald-900/30 rounded-full flex items-center justify-center text-emerald-600 dark:text-emerald-400 shrink-0">
                      <FileText size={24} />
                   </div>
                   <div>
-                     <p className="text-2xl font-extrabold text-slate-900 dark:text-white leading-none">100.000+</p>
+                     <p className="text-2xl font-extrabold text-slate-900 dark:text-white leading-none">10.000+</p>
                      <p className="text-xs font-bold text-slate-500 uppercase tracking-wide mt-1">File Diupload</p>
                   </div>
                </div>

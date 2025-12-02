@@ -343,21 +343,6 @@ export const RegionalSupport: React.FC = () => {
         {/* Carousel / Grid Logic with added Padding to prevent crop */}
         {searchTerm === '' ? (
             <div className="relative group/carousel">
-                <button 
-                    onClick={() => scroll('left')}
-                    className="absolute left-0 top-1/2 -translate-y-1/2 z-30 bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm p-3 rounded-full shadow-lg border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:bg-white dark:hover:bg-slate-700 hover:text-violet-600 dark:hover:text-violet-400 transition-all opacity-0 group-hover/carousel:opacity-100 -translate-x-4 md:-translate-x-6"
-                    aria-label="Scroll left"
-                >
-                    <ChevronLeft size={24} />
-                </button>
-                <button 
-                    onClick={() => scroll('right')}
-                    className="absolute right-0 top-1/2 -translate-y-1/2 z-30 bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm p-3 rounded-full shadow-lg border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:bg-white dark:hover:bg-slate-700 hover:text-violet-600 dark:hover:text-violet-400 transition-all opacity-0 group-hover/carousel:opacity-100 translate-x-4 md:translate-x-6"
-                    aria-label="Scroll right"
-                >
-                    <ChevronRightIcon size={24} />
-                </button>
-
                 <div 
                     ref={scrollContainerRef}
                     className="relative -mx-4 px-4 pt-12 pb-12 overflow-x-auto hide-scrollbar flex gap-6 snap-x snap-mandatory scroll-smooth"
@@ -368,6 +353,24 @@ export const RegionalSupport: React.FC = () => {
                         </div>
                      ))}
                      <div className="snap-center shrink-0 w-8"></div> {/* Right spacer */}
+                </div>
+                
+                 {/* Navigation Buttons Below Cards */}
+                 <div className="flex justify-center gap-4 mt-2">
+                    <button 
+                        onClick={() => scroll('left')}
+                        className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:bg-violet-50 dark:hover:bg-slate-700 hover:text-violet-600 dark:hover:text-violet-400 p-3 rounded-full shadow-lg transition-all active:scale-95"
+                        aria-label="Scroll left"
+                    >
+                        <ChevronLeft size={24} />
+                    </button>
+                    <button 
+                        onClick={() => scroll('right')}
+                        className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:bg-violet-50 dark:hover:bg-slate-700 hover:text-violet-600 dark:hover:text-violet-400 p-3 rounded-full shadow-lg transition-all active:scale-95"
+                        aria-label="Scroll right"
+                    >
+                        <ChevronRightIcon size={24} />
+                    </button>
                 </div>
             </div>
         ) : (
@@ -490,7 +493,7 @@ export const Leaderboard: React.FC = () => {
                                         : 'bg-white/10 border-white/20'
                                     }`}>
                                         <Zap size={16} className={isFirst ? 'text-white' : 'text-orange-400'} fill="currentColor" />
-                                        <span className="font-bold">{teacher.points} XP</span>
+                                        <span className="font-bold">{teacher.points} POIN</span>
                                     </div>
                                 </div>
                             </div>

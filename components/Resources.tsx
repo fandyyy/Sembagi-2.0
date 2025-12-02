@@ -39,7 +39,7 @@ const Resources: React.FC = () => {
           </div>
           
           <h2 className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white tracking-tight">
-            Pusat Data & <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-violet-600">Informasi</span>
+            Pusat Dokumen & <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-violet-600">Sumber Daya</span>
           </h2>
           
           <p className="text-slate-500 dark:text-slate-400 text-lg leading-relaxed">
