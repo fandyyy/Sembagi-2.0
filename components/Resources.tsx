@@ -39,7 +39,7 @@ const Resources: React.FC = () => {
           </div>
           
           <h2 className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white tracking-tight">
-            Pusat Dokumen & <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-violet-600">Sumber Daya</span>
+            Pusat <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-violet-600">Dokumen & Sumber Daya</span>
           </h2>
           
           <p className="text-slate-500 dark:text-slate-400 text-lg leading-relaxed">
@@ -141,7 +141,7 @@ const Resources: React.FC = () => {
 
                 {/* Footer Action */}
                 <div className="relative z-10 flex items-center justify-between mt-auto pt-4 border-t border-slate-200 dark:border-slate-700 group-hover:border-slate-200 dark:group-hover:border-slate-700 transition-colors">
-                   <span className="text-xs font-bold text-slate-400 group-hover:text-blue-500 transition-colors">Explore</span>
+                   <span className="text-xs font-bold text-slate-400 group-hover:text-blue-500 transition-colors">Akses</span>
                    <div className="w-8 h-8 rounded-full bg-white dark:bg-slate-900 flex items-center justify-center text-slate-400 group-hover:bg-blue-500 group-hover:text-white transition-all duration-300">
                       <ArrowUpRight size={16} />
                    </div>

@@ -93,12 +93,10 @@ const Hero: React.FC = () => {
                {/* Decorative Background Blob - Larger */}
                <div className="absolute w-[500px] h-[500px] bg-violet-500/10 rounded-full blur-3xl animate-pulse"></div>
 
-               {/* Main Video Container - Increased Size by ~15% */}
-               {/* Old: w-72 h-96 lg:w-96 lg:h-[480px] */}
-               {/* New: w-[330px] h-[440px] lg:w-[440px] lg:h-[550px] */}
+               {/* Main Video Container */}
                <div 
                   onClick={() => setIsVideoOpen(true)}
-                  className="relative z-10 w-[330px] h-[440px] lg:w-[440px] lg:h-[550px] rounded-[3rem] overflow-hidden shadow-2xl shadow-violet-500/20 border-[8px] border-white dark:border-slate-800 transform -rotate-3 hover:rotate-0 transition-all duration-700 ease-out cursor-pointer group"
+                  className="relative z-10 w-[330px] lg:w-[440px] aspect-[24/34] rounded-[3rem] overflow-hidden shadow-2xl shadow-violet-500/20 border-[8px] border-white dark:border-slate-800 transform -rotate-3 hover:rotate-0 transition-all duration-700 ease-out cursor-pointer group"
                >
                   <video 
                     src="https://sembagi.slemankab.go.id/folder_image/Manual%20Book%20Sembagi.mp4" 
@@ -123,36 +121,36 @@ const Hero: React.FC = () => {
                   </div>
                </div>
 
-               {/* Floating Badge 1: Schools - Adjusted Position (Lowered) */}
-               <div className="absolute top-24 left-0 lg:-left-12 bg-white/70 dark:bg-slate-900/70 backdrop-blur-xl p-4 pr-6 rounded-2xl shadow-[0_15px_30px_rgb(0,0,0,0.1)] border border-white/50 dark:border-slate-700/50 flex items-center gap-4 animate-float hover:scale-105 transition-transform cursor-default z-20">
+               {/* Floating Badge 1: Schools - Scaled Up ~15% */}
+               <div className="absolute top-24 left-0 lg:-left-12 bg-white/70 dark:bg-slate-900/70 backdrop-blur-xl p-4 pr-5 rounded-2xl shadow-[0_15px_30px_rgb(0,0,0,0.1)] border border-white/50 dark:border-slate-700/50 flex items-center gap-3 animate-float hover:scale-105 transition-transform cursor-default z-20">
                   <div className="w-12 h-12 bg-orange-100 dark:bg-orange-900/30 rounded-full flex items-center justify-center text-orange-600 dark:text-orange-400 shrink-0">
                      <Building2 size={24} />
                   </div>
                   <div>
                      <p className="text-2xl font-extrabold text-slate-900 dark:text-white leading-none">500+</p>
-                     <p className="text-xs font-bold text-slate-500 uppercase tracking-wide mt-1">Sekolah Bergabung</p>
+                     <p className="text-xs font-bold text-slate-500 uppercase tracking-wide mt-0.5">Sekolah Bergabung</p>
                   </div>
                </div>
 
-               {/* Floating Badge 2: Teachers - Adjusted Position (Raised) */}
-               <div className="absolute bottom-24 -right-2 lg:-right-12 bg-white/70 dark:bg-slate-900/70 backdrop-blur-xl p-4 pr-6 rounded-2xl shadow-[0_15px_30px_rgb(0,0,0,0.1)] border border-white/50 dark:border-slate-700/50 flex items-center gap-4 animate-float hover:scale-105 transition-transform cursor-default z-20" style={{ animationDelay: '2s' }}>
+               {/* Floating Badge 2: Teachers - Scaled Up ~15% - Shifted Up (bottom-32) */}
+               <div className="absolute bottom-32 -right-2 lg:-right-12 bg-white/70 dark:bg-slate-900/70 backdrop-blur-xl p-4 pr-5 rounded-2xl shadow-[0_15px_30px_rgb(0,0,0,0.1)] border border-white/50 dark:border-slate-700/50 flex items-center gap-3 animate-float hover:scale-105 transition-transform cursor-default z-20" style={{ animationDelay: '2s' }}>
                   <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center text-blue-600 dark:text-blue-400 shrink-0">
                      <Users size={24} />
                   </div>
                   <div>
                      <p className="text-2xl font-extrabold text-slate-900 dark:text-white leading-none">6.000+</p>
-                     <p className="text-xs font-bold text-slate-500 uppercase tracking-wide mt-1">Guru Terdaftar</p>
+                     <p className="text-xs font-bold text-slate-500 uppercase tracking-wide mt-0.5">Guru Terdaftar</p>
                   </div>
                </div>
 
-               {/* Floating Badge 3: Files - Position */}
-               <div className="absolute bottom-11 left-4 lg:left-0 bg-white/70 dark:bg-slate-900/70 backdrop-blur-xl p-4 pr-6 rounded-2xl shadow-[0_15px_30px_rgb(0,0,0,0.1)] border border-white/50 dark:border-slate-700/50 flex items-center gap-4 animate-float hover:scale-105 transition-transform cursor-default z-20" style={{ animationDelay: '4s' }}>
+               {/* Floating Badge 3: Files - Scaled Up ~15% */}
+               <div className="absolute bottom-11 left-4 lg:left-0 bg-white/70 dark:bg-slate-900/70 backdrop-blur-xl p-4 pr-5 rounded-2xl shadow-[0_15px_30px_rgb(0,0,0,0.1)] border border-white/50 dark:border-slate-700/50 flex items-center gap-3 animate-float hover:scale-105 transition-transform cursor-default z-20" style={{ animationDelay: '4s' }}>
                   <div className="w-12 h-12 bg-emerald-100 dark:bg-emerald-900/30 rounded-full flex items-center justify-center text-emerald-600 dark:text-emerald-400 shrink-0">
                      <FileText size={24} />
                   </div>
                   <div>
                      <p className="text-2xl font-extrabold text-slate-900 dark:text-white leading-none">10.000+</p>
-                     <p className="text-xs font-bold text-slate-500 uppercase tracking-wide mt-1">File Diupload</p>
+                     <p className="text-xs font-bold text-slate-500 uppercase tracking-wide mt-0.5">File Diupload</p>
                   </div>
                </div>
 

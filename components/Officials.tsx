@@ -29,7 +29,7 @@ const Officials: React.FC = () => {
               style={{ animationDelay: `${index * 150}ms` }}
             >
               {/* Card Container */}
-              <div className="relative h-full w-full rounded-[2rem] overflow-hidden shadow-2xl shadow-slate-200 dark:shadow-slate-900/50 transition-all duration-500 group-hover:-translate-y-2 group-hover:shadow-violet-500/20">
+              <div className="relative h-full w-full rounded-[2rem] overflow-hidden shadow-2xl shadow-slate-200 dark:shadow-slate-900/50 transition-all duration-500 group-hover:-translate-y-2 group-hover:shadow-violet-500/20 isolate transform-gpu">
                 
                 {/* Image */}
                 <img 

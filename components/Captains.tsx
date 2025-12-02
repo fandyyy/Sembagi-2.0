@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { CAPTAINS, CO_CAPTAINS, KORWILS, TEACHERS } from '../constants';
 import { MapPin, Quote, Zap, Search, XCircle, Crown, MessageCircle, Shield, Award, TrendingUp, Medal, ChevronUp, ChevronDown, Trophy, User, ArrowRight, ArrowLeft, Target, ChevronLeft, ChevronRight as ChevronRightIcon } from 'lucide-react';
 
@@ -45,7 +45,7 @@ export const CoreTeam: React.FC = () => {
             Kapten <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-fuchsia-600">Sembagi</span>
           </h2>
           <p className="text-slate-500 dark:text-slate-400 max-w-2xl mx-auto text-lg font-medium">
-            Pendidik bertalenta digital yang mendedikasikan diri untuk membangun dan memelihara platform Sembagi.
+            Para inovator pendidikan yang mendedikasikan keahlian digital mereka untuk membangun ekosistem berbagi yang berkelanjutan.
           </p>
         </div>
 
@@ -56,12 +56,12 @@ export const CoreTeam: React.FC = () => {
               className="group relative h-[380px] reveal-up"
               style={{ transitionDelay: `${idx * 100}ms` }}
             >
-              <div className="absolute inset-0 bg-white dark:bg-slate-800 rounded-[2.5rem] shadow-xl shadow-slate-200/60 dark:shadow-slate-950/50 transition-all duration-500 group-hover:-translate-y-3 group-hover:shadow-2xl group-hover:shadow-violet-200/50 dark:group-hover:shadow-violet-900/30 border border-slate-100 dark:border-slate-700"></div>
+              <div className="absolute inset-0 bg-white dark:bg-slate-800 rounded-[2.5rem] shadow-xl shadow-slate-200/60 dark:shadow-slate-950/50 transition-all duration-500 group-hover:-translate-y-3 group-hover:shadow-2xl group-hover:shadow-violet-200/50 dark:group-hover:shadow-violet-900/30 border border-slate-100 dark:border-slate-700 isolate transform-gpu"></div>
               <div className="relative h-full flex flex-col items-center pt-8 pb-8 px-6">
                 <div className="relative w-36 h-36 mb-6">
                   <div className="absolute inset-[-8px] border-2 border-dashed border-violet-300 dark:border-violet-600 rounded-full opacity-0 group-hover:opacity-100 animate-spin-slow transition-opacity duration-500"></div>
                   <div className="absolute inset-0 bg-gradient-to-tr from-violet-600 to-fuchsia-600 rounded-full blur-xl opacity-0 group-hover:opacity-40 transition-opacity duration-500"></div>
-                  <div className="relative w-full h-full rounded-full p-1 bg-white dark:bg-slate-800 shadow-lg overflow-hidden group-hover:scale-105 transition-transform duration-500">
+                  <div className="relative w-full h-full rounded-full p-1 bg-white dark:bg-slate-800 shadow-lg overflow-hidden group-hover:scale-105 transition-transform duration-500 isolate transform-gpu">
                       <img src={person.image} alt={person.name} className="w-full h-full object-cover object-top rounded-full grayscale group-hover:grayscale-0 transition-all duration-500" />
                   </div>
                   <div className="absolute bottom-1 right-1 bg-slate-900 dark:bg-white text-white dark:text-slate-900 p-1.5 rounded-full shadow-lg border-[3px] border-white dark:border-slate-800 z-10 group-hover:scale-110 transition-transform duration-300">
@@ -95,16 +95,16 @@ export const SupportTeam: React.FC = () => {
   const [showAllCoCaptains, setShowAllCoCaptains] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
 
-  const filteredCoCaptains = searchTerm.trim() === ''
+  const filteredCoCaptains = useMemo(() => searchTerm.trim() === ''
     ? CO_CAPTAINS
     : CO_CAPTAINS.filter((person) =>
         person.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
         person.area.toLowerCase().includes(searchTerm.toLowerCase())
-      );
+      ), [searchTerm]);
 
-  const visibleCoCaptains = (showAllCoCaptains || searchTerm !== '') 
+  const visibleCoCaptains = useMemo(() => (showAllCoCaptains || searchTerm !== '') 
     ? filteredCoCaptains 
-    : filteredCoCaptains.slice(0, 8);
+    : filteredCoCaptains.slice(0, 8), [showAllCoCaptains, searchTerm, filteredCoCaptains]);
 
   useReveal(visibleCoCaptains);
 
@@ -122,7 +122,7 @@ export const SupportTeam: React.FC = () => {
               Co-Kapten <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-indigo-600">Kapanewon</span>
             </h2>
             <p className="text-slate-500 dark:text-slate-400 text-lg">
-              Garda terdepan yang mengawal transformasi digital di 17 Kapanewon Kabupaten Sleman.
+              Tim yang turut mengawal implementasi dan membantu penanganan kendala akun Sembagi di setiap Kapanewon.
             </p>
           </div>
           
@@ -144,9 +144,13 @@ export const SupportTeam: React.FC = () => {
                     </button>
                 )}
             </div>
-            <div className="px-5 py-3 bg-slate-50 dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 flex items-center justify-center gap-3 whitespace-nowrap">
-                <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-                <span className="text-sm font-bold text-slate-600 dark:text-slate-300">{filteredCoCaptains.length} Personil</span>
+            {/* Updated Indicator: Darker bg in light mode + Green-500 dot */}
+            <div className="px-5 py-3 bg-white dark:bg-slate-800 rounded-xl shadow-md border border-slate-200 dark:border-slate-700 flex items-center justify-center gap-3 whitespace-nowrap">
+                <span className="relative flex h-3 w-3">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
+                </span>
+                <span className="text-sm font-bold text-slate-700 dark:text-slate-200">{filteredCoCaptains.length} Co-Kapten</span>
             </div>
           </div>
         </div>
@@ -155,11 +159,11 @@ export const SupportTeam: React.FC = () => {
           {visibleCoCaptains.map((person, idx) => (
             <div 
               key={`${person.name}-${idx}`}
-              className="group bg-white dark:bg-slate-800/80 rounded-2xl p-4 border border-slate-200 dark:border-slate-700/50 hover:border-violet-400 dark:hover:border-violet-600 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 reveal-up flex flex-col gap-4"
+              className="group bg-white dark:bg-slate-800/80 rounded-2xl p-4 border border-slate-200 dark:border-slate-700/50 hover:border-violet-400 dark:hover:border-violet-600 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 reveal-up flex flex-col gap-4 isolate transform-gpu"
             >
                 <div className="flex items-start justify-between gap-3">
                     <div className="flex items-center gap-3 w-full">
-                        <div className="w-12 h-12 rounded-xl overflow-hidden shrink-0 border border-slate-100 dark:border-slate-600 shadow-sm">
+                        <div className="w-12 h-12 rounded-xl overflow-hidden shrink-0 border border-slate-100 dark:border-slate-600 shadow-sm isolate transform-gpu">
                             <img src={person.image} alt={person.name} className="w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-500" />
                         </div>
                         <div className="min-w-0 flex-1">
@@ -220,13 +224,13 @@ export const RegionalSupport: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   
-  const filteredKorwils = searchTerm.trim() === '' 
+  const filteredKorwils = useMemo(() => searchTerm.trim() === '' 
     ? KORWILS 
     : KORWILS.filter((person) => 
         person.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
         person.area.toLowerCase().includes(searchTerm.toLowerCase()) ||
         person.role.toLowerCase().includes(searchTerm.toLowerCase())
-      );
+      ), [searchTerm]);
 
   useReveal(filteredKorwils);
 
@@ -247,7 +251,7 @@ export const RegionalSupport: React.FC = () => {
     const isKorwil = person.role === 'Korwil';
     
     return (
-      <div className="group relative aspect-[3/4] w-full cursor-pointer rounded-2xl overflow-hidden bg-white dark:bg-slate-800 shadow-md hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-slate-100 dark:border-slate-700">
+      <div className="group relative aspect-[3/4] w-full cursor-pointer rounded-2xl overflow-hidden bg-white dark:bg-slate-800 shadow-md hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-slate-100 dark:border-slate-700 isolate transform-gpu">
         {/* Image */}
         <img 
             src={person.image} 
@@ -273,7 +277,7 @@ export const RegionalSupport: React.FC = () => {
                 {/* Icon */}
                 {isKorwil ? <MapPin size={10} className="fill-current text-violet-400" /> : <Shield size={10} className="fill-current text-orange-400" />}
                 
-                <span className="text-[10px] font-bold uppercase tracking-wider relative z-10 leading-none">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-slate-200 text-[10px] font-bold uppercase tracking-wider relative z-10 leading-none">
                     {person.role}
                 </span>
              </div>
@@ -308,8 +312,8 @@ export const RegionalSupport: React.FC = () => {
       <div className="container mx-auto px-4 relative z-10">
         
         {/* Header Section */}
-        <div className="flex flex-col md:flex-row justify-between items-end gap-8 mb-12">
-          <div className="reveal-up space-y-3 max-w-2xl">
+        <div className="flex flex-col lg:flex-row justify-between items-end gap-8 mb-12">
+          <div className="reveal-up space-y-3 flex-1">
             <span className="inline-block py-1.5 px-4 rounded-full bg-cyan-100 dark:bg-cyan-900/30 text-cyan-700 dark:text-cyan-300 text-xs font-bold uppercase tracking-wider border border-cyan-200 dark:border-cyan-700/50">
               Dukungan Wilayah
             </span>
@@ -321,7 +325,7 @@ export const RegionalSupport: React.FC = () => {
             </p>
           </div>
           
-          <div className="relative w-full md:w-auto min-w-[300px] reveal-up">
+          <div className="relative w-full lg:w-auto min-w-[300px] reveal-up shrink-0">
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
                   <Search size={18} />
               </div>
@@ -343,9 +347,25 @@ export const RegionalSupport: React.FC = () => {
         {/* Carousel / Grid Logic with added Padding to prevent crop */}
         {searchTerm === '' ? (
             <div className="relative group/carousel">
+                 {/* Modern Navigation Arrows (Only on Fine Pointer / Non-Touch) */}
+                 <button 
+                    onClick={() => scroll('left')}
+                    className="absolute left-4 top-1/2 -translate-y-1/2 z-30 hidden [@media(pointer:fine)]:flex items-center justify-center w-12 h-12 bg-white/30 dark:bg-slate-900/30 backdrop-blur-md border border-white/50 dark:border-slate-700 text-slate-900 dark:text-white rounded-full shadow-lg opacity-0 group-hover/carousel:opacity-100 transition-all duration-300 hover:bg-white dark:hover:bg-slate-800 hover:scale-110"
+                    aria-label="Scroll left"
+                 >
+                    <ChevronLeft size={24} />
+                 </button>
+                 <button 
+                    onClick={() => scroll('right')}
+                    className="absolute right-4 top-1/2 -translate-y-1/2 z-30 hidden [@media(pointer:fine)]:flex items-center justify-center w-12 h-12 bg-white/30 dark:bg-slate-900/30 backdrop-blur-md border border-white/50 dark:border-slate-700 text-slate-900 dark:text-white rounded-full shadow-lg opacity-0 group-hover/carousel:opacity-100 transition-all duration-300 hover:bg-white dark:hover:bg-slate-800 hover:scale-110"
+                    aria-label="Scroll right"
+                 >
+                    <ChevronRightIcon size={24} />
+                 </button>
+
                 <div 
                     ref={scrollContainerRef}
-                    className="relative -mx-4 px-4 pt-12 pb-12 overflow-x-auto hide-scrollbar flex gap-6 snap-x snap-mandatory scroll-smooth"
+                    className="relative -mx-4 px-4 pt-4 pb-12 overflow-x-auto hide-scrollbar flex gap-6 snap-x snap-mandatory scroll-smooth"
                 >
                      {filteredKorwils.map((person, idx) => (
                         <div key={idx} className="snap-center shrink-0 w-[240px] md:w-[280px] reveal-up" style={{ transitionDelay: `${idx * 50}ms` }}>
@@ -353,24 +373,6 @@ export const RegionalSupport: React.FC = () => {
                         </div>
                      ))}
                      <div className="snap-center shrink-0 w-8"></div> {/* Right spacer */}
-                </div>
-                
-                 {/* Navigation Buttons Below Cards */}
-                 <div className="flex justify-center gap-4 mt-2">
-                    <button 
-                        onClick={() => scroll('left')}
-                        className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:bg-violet-50 dark:hover:bg-slate-700 hover:text-violet-600 dark:hover:text-violet-400 p-3 rounded-full shadow-lg transition-all active:scale-95"
-                        aria-label="Scroll left"
-                    >
-                        <ChevronLeft size={24} />
-                    </button>
-                    <button 
-                        onClick={() => scroll('right')}
-                        className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:bg-violet-50 dark:hover:bg-slate-700 hover:text-violet-600 dark:hover:text-violet-400 p-3 rounded-full shadow-lg transition-all active:scale-95"
-                        aria-label="Scroll right"
-                    >
-                        <ChevronRightIcon size={24} />
-                    </button>
                 </div>
             </div>
         ) : (
@@ -432,7 +434,7 @@ export const Leaderboard: React.FC = () => {
                         return (
                             <div 
                                 key={idx}
-                                className={`group relative bg-white dark:bg-slate-800 rounded-3xl overflow-hidden border transition-all duration-500 ease-out hover:-translate-y-2 flex-shrink-0
+                                className={`group relative bg-white dark:bg-slate-800 rounded-3xl overflow-hidden border transition-all duration-500 ease-out hover:-translate-y-2 flex-shrink-0 isolate transform-gpu
                                     ${isFirst 
                                         ? 'w-full md:w-[275px] lg:w-[259px] h-[400px] md:h-[450px] lg:h-[389px] shadow-2xl shadow-orange-500/30 border-orange-500 z-10 order-first lg:order-3' 
                                         : 'w-full sm:w-[calc(50%-12px)] md:w-[243px] lg:w-[211px] h-[350px] md:h-[400px] lg:h-[324px] shadow-xl border-slate-200 dark:border-slate-700 hover:border-orange-300 dark:hover:border-orange-700'

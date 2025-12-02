@@ -97,7 +97,7 @@ const Footer: React.FC = () => {
         </div>
 
         <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left text-blue-400 text-sm">
-          <p>© {new Date().getFullYear()} Bidang Pembinaan SD - Dinas Pendidikan Sleman.</p>
+          <p>© {new Date().getFullYear()} Bidang Pembinaan SD • Dinas Pendidikan Kabupaten Sleman</p>
           <div className="flex gap-6">
             <a href="#" className="hover:text-blue-200 transition-colors">Privacy Policy</a>
             <a href="#" className="hover:text-blue-200 transition-colors">Terms of Service</a>
